@@ -15,50 +15,72 @@
 
   <div class="card m-3" style="width: 18rem;">
     <ul class="list-group list-group-flush" id="chat-log">
-      <li class="list-group-item">An item</li>
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
     </ul>
   </div>
 
   <div class="input-group w-50 m-3">
-    <input id="chat-message-input" type="text" class="form-control" placeholder="mensagem" aria-label="Recipient's username" aria-describedby="basic-addon2">
-    <span id="chat-message-submit" class="input-group-text" id="basic-addon2"><i class="bi bi-send" style="cursor: pointer;"></i></span>
+    <input id="chat-message-input" type="text" class="form-control" placeholder="mensagem"
+      aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <span id="chat-message-submit" class="input-group-text" id="basic-addon2"><i class="bi bi-send"
+        style="cursor: pointer;"></i></span>
   </div>
 
-  <script type="text/javascript">
-    const roomName = JSON.parse(document.getElementById('room-name').textContent),
-      chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
-    
-      chatSocket.onmessage = function(e) {
-        const data = JSON.parse(e.data);
-        document.querySelector('#chat-log').innerHTML = `
-          <li class="list-group-item text-end">${data}</li>
-        `;
-      }
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+    integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-      chatSocket.onclose = function(e) {
-        console.error('chat socket closed');
-      }
+  <script>
+    const chatMessageSubmit = $('#chat-message-submit'),
+      chatMessageInput = $('#chat-message-input'),
+      chatLog = $('#chat-log'),
+      socket = io('{{ rasa_url|escapejs }}');
 
-      document.querySelector('#chat-message-input').focus();
-      document.querySelector('#chat-message-input').onkeyup = function(e) {
-        if (e.key === 'Enter') {
-          document.querySelector('#chat-message-submit').click();
-        }
-      }
+    socket.on('connect', function () {
+      console.log('connected to ws :>> ');
+    });
 
-      document.querySelector('#chat-message-submit').onclick = function(e) {
-        const messageInputDom = document.querySelector('#chat-message-input'),
-          message = messageInputDom.value;
+    socket.on('connect_error', (error) => {
+      console.log('error :>> ', error);
+    });
 
-        chatSocket.send(JSON.stringify({
-          'message': message,
-        }));
-        messageInputDom.value = '';
+    chatMessageSubmit.click(function () {
+      console.log('cliquei :>> ');
+
+      const msg = chatMessageInput.val();
+      console.log('msg :>> ', msg);
+
+      if (msg) {
+        socket.emit('user_uttered', {
+          'message': msg,
+        })
+
+        chatMessageInput.val('');
+
+        appendMessage(msg, 'sent');
       }
+    });
+
+    function appendMessage(msg, type) {
+      const item = `<li class="list-group-item message_${type}">${msg}</li>`;
+      chatLog.append(item);
+      scrollToBottom();
+    }
+
+    function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    socket.on('bot_uttered', function (response) {
+      console.log("Bot uttered:", response);
+      if (response.text) {
+        appendMessage(response.text, "received");
+      }
+    });
   </script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
