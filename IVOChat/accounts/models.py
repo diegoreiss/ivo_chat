@@ -19,6 +19,9 @@ class CustomUser(AbstractUser):
     prev_password = models.CharField(max_length=255, blank=True, null=True)
     is_password_changed = models.BooleanField(default=False, blank=False, null=False)
 
+    cpf = models.CharField(max_length=60, null=True)
+    data_nascimento = models.DateField(null=True)
+
     def set_password(self, raw_password: str | None) -> None:
         self.prev_password = raw_password
         self.is_password_changed = False

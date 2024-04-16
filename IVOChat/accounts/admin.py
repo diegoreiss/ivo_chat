@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import CustomUser
 
 
-admin.site.site_header = 'Administração da Biblioteca'
+admin.site.site_header = 'Super Administração do IVO'
 
 @admin.register(CustomUser)
 class CustomAdmin(UserAdmin):
