@@ -13,3 +13,9 @@ class CustomUserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['password', 'email']
+
+
+class CustomUserRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['pk', 'role']

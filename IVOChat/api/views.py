@@ -45,4 +45,12 @@ class CustomUserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
                                    f'Sua nova senha: {serializer.data.get("password")}')
 
             return Response(status=status.HTTP_200_OK)
+
+
+class CustomUserCurrentRetrieve(generics.RetrieveAPIView):
+    serializer_class = serializers.CustomUserRetrieveSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        return self.request.user
     

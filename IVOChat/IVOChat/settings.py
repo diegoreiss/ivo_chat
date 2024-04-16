@@ -30,13 +30,14 @@ SECRET_KEY = 'django-insecure-5!(mgic2zw30+i1xt$m*5s=vzs_$-ffulwe!eh9n!p-h#m_=pc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'daphne',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'IVOChat.urls'
@@ -135,9 +137,6 @@ SIMPLE_JWT = {
 
 SWAGGER_SETTINGS = {
    'SECURITY_DEFINITIONS': {
-      'Basic': {
-            'type': 'basic'
-      },
       'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
@@ -145,6 +144,15 @@ SWAGGER_SETTINGS = {
       }
    }
 }
+
+# Cors Headers
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Login Url
+
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/chat/'
 
 WSGI_APPLICATION = 'IVOChat.wsgi.application'
 ASGI_APPLICATION = 'IVOChat.asgi.application'

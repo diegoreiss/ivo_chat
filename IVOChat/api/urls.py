@@ -5,8 +5,9 @@ from . import views
 
 
 urlpatterns = [
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('user/', views.CustomUserListCreate.as_view(), name='customuser-view-create'),
-    path('user/<int:pk>', views.CustomUserRetrieveUpdateDestroy.as_view(), name='customuser_view_update')
+    path('token/', view=TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', view=TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/', view=views.CustomUserListCreate.as_view(), name='customuser_view_create'),
+    path('user/role/', view=views.CustomUserCurrentRetrieve.as_view(), name='customuser_current_role_view'),
+    path('user/<int:pk>/', view=views.CustomUserRetrieveUpdateDestroy.as_view(), name='customuser_view_update'),
 ]
