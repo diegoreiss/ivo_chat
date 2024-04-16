@@ -38,19 +38,33 @@ class CustomUserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
         if serializer.is_valid():
             self.object.set_password(serializer.data.get('password'))
-            self.object.email = serializer.data.get('email')
+            self.object.is_active = True
             self.object.save()
 
             email_utils.send_email('Nova Senha', self.object.email,
                                    f'Sua nova senha: {serializer.data.get("password")}')
 
-            return Response(status=status.HTTP_200_OK)
+            return Response({
+                'message': 'works'
+            }, status=status.HTTP_200_OK)
 
 
 class CustomUserCurrentRetrieve(generics.RetrieveAPIView):
     serializer_class = serializers.CustomUserRetrieveSerializer
     permission_classes = (IsAuthenticated, )
 
+    @swagger_auto_schema(operation_summary='Retona o usuário atual autorizado')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
     def get_object(self):
         return self.request.user
-    
+
+
+class CustomUserByRoleAlunoAPIView(generics.ListAPIView):
+    serializer_class = serializers.CustomUserSerializer
+    queryset = accounts_models.CustomUser.objects.filter(role=2)
+
+    @swagger_auto_schema(operation_summary='Retona todos os usuários com a role [Aluno]')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)

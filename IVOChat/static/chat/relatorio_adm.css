@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    display: grid;
+    grid-template-columns: 12% 88%;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "section header" "aside main";
+    background-color: #faf1e4;
+    overflow: hidden;
+}
+
+header {
+    grid-area: header;
+}
+
+.icon_user {
+    padding: 19px;
+    margin-right: 10px;
+}
+
+section {
+    grid-area: section;
+}
+
+.custom-navbar {
+    background-color: #231f20;
+    justify-content: center;
+}
+
+aside {
+    grid-area: aside;
+    background-color: #231f20;
+    padding: 60px 20px;
+    border-top: 2px solid black;
+}
+
+.btn_aside {
+    max-width: 100%;
+    background-color: #da494e;
+    color: white;
+    border-radius: 50px;
+    width: 150px;
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave para a mudança de cor de fundo */
+}
+
+.btn_aside:hover {
+    background-color: rgba(218, 73, 78, 0.8); /* Altera a cor de fundo ao passar o cursor sobre o botão */
+}
+
+
+main {
+    grid-area: main;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 10fr 10fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "section header" 
+    "footer footer";
+    margin: 20px;
+    gap: 20px;
+}
+
+
+.potenciometro{
+    grid-area: section;
+    background-color: rgba(27, 153, 63, 0.3); 
+    border: black solid 1px
+}
+
+.pie{
+    grid-area: header;
+    background-color: rgba(27, 153, 63, 0.3); 
+    border: black solid 1px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+}
+
+.title-pie {
+    position: absolute;
+    top: 10px; 
+    left: 10px;  
+}
+
+.bars{
+    grid-area: footer;
+    background-color: rgba(27, 153, 63, 0.3); 
+    border: black solid 1px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: relative;  
+}
+
+.title-bars {
+    position: absolute;
+    top: 10px; 
+    left: 10px;  
+}

@@ -6,16 +6,22 @@ from accounts.models import CustomUser
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['pk', 'username', 'password', 'email', 'role', 'cpf', 'data_nascimento']
+        fields = ['pk', 'first_name', 'last_name', 'username', 'email', 'role', 'cpf', 'data_nascimento', 'is_active', 'is_password_changed']
 
 
 class CustomUserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['password', 'email']
+        fields = ['password']
 
 
 class CustomUserRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['pk', 'role']
+        fields = ['pk', 'username', 'role']
+
+
+class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['password']

@@ -26,8 +26,8 @@
     "fields": {
       "last_login": null,
       "is_superuser": false,
-      "first_name": "",
-      "last_name": "",
+      "first_name": "davi",
+      "last_name": "coelho",
       "email": "",
       "is_staff": false,
       "is_active": true,
@@ -47,9 +47,9 @@
     "fields": {
       "last_login": null,
       "is_superuser": false,
-      "first_name": "",
-      "last_name": "",
-      "email": "",
+      "first_name": "Gabriel",
+      "last_name": "Dutra Alves",
+      "email": "gabriel2002@gmail.com",
       "is_staff": false,
       "is_active": true,
       "date_joined": "2024-04-08T04:11:14.628Z",
@@ -58,6 +58,48 @@
       "password": "pbkdf2_sha256$720000$0LY0XAQOBNV8t2lau35gYo$fNc3ouN83ovHO+/TVu/86aRcvD8c67RmhY0Lnu8I+bw=",
       "prev_password": null,
       "is_password_changed": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.customuser",
+    "pk": 4,
+    "fields": {
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Diego Kawe",
+      "last_name": "Portal dos Reis",
+      "email": "diegoportal50@gmail.com",
+      "is_staff": false,
+      "is_active": false,
+      "date_joined": "2024-04-08T04:11:14.628Z",
+      "username": "diegoreis",
+      "role": 2,
+      "password": "pbkdf2_sha256$720000$0LY0XAQOBNV8t2lau35gYo$fNc3ouN83ovHO+/TVu/86aRcvD8c67RmhY0Lnu8I+bw=",
+      "prev_password": null,
+      "is_password_changed": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.customuser",
+    "pk": 5,
+    "fields": {
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Lucas",
+      "last_name": "Espinosa",
+      "email": "lucas@gmail.com",
+      "is_staff": false,
+      "is_active": false,
+      "date_joined": "2024-04-08T04:11:14.628Z",
+      "username": "luca",
+      "role": 2,
+      "password": "pbkdf2_sha256$720000$0LY0XAQOBNV8t2lau35gYo$fNc3ouN83ovHO+/TVu/86aRcvD8c67RmhY0Lnu8I+bw=",
+      "prev_password": null,
+      "is_password_changed": false,
       "groups": [],
       "user_permissions": []
     }

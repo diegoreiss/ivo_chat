@@ -14,8 +14,7 @@ class ChatView(View):
 
 class ChatAdminView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'chat/chat_adm.html')
-    
+        return render(request, 'chat/relatorio_adm.html')
 
 
 # def sala(request, room_name):

@@ -24,10 +24,20 @@ formLogin.on('submit', function (event) {
     success: async function (response) {
       localStorage.setItem('refresh', response.refresh);
       localStorage.setItem('access', response.access);
+      console.log(response);
 
-      const data = await getRoleFromCurrentUser();
-      console.log('role :>> ', data.role);
-      redirectByRole(data.role);
+      const data = await getRoleFromCurrentUser(),
+        role = data.role;
+      
+      console.log('role :>> ', role);
+
+      if (!role) {
+        window.location.reload();
+
+        return;
+      }
+
+      redirectByRole(role);
     },
     error: function (xhr, status, error) {
       console.log('error :>> ', error);
@@ -39,7 +49,7 @@ formLogin.on('submit', function (event) {
 
 function getRoleFromCurrentUser() {
   return $.ajax({
-    url: '/api/user/role/',
+    url: '/api/user/current/',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
