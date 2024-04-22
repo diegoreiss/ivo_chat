@@ -24,8 +24,9 @@ class CustomAdmin(UserAdmin):
                     'password1', 
                     'password2', 
                     'role', 
+                    'is_password_changed',
                     'is_staff', 
-                    'is_superuser'
+                    'is_superuser',
                 ),
             },
         ),
@@ -33,7 +34,7 @@ class CustomAdmin(UserAdmin):
     list_display = ('username', 'email', 'role', 'is_staff', 'is_password_changed')
     fieldsets = (
         (_('Dados de autenticação'), {'fields': ('username', 'password')}),
-        (_('Dados de conta'), {'fields': ('role',)}),
+        (_('Dados de conta'), {'fields': ('role', 'is_password_changed')}),
         (_('Dados Pessoais'), {'fields': ('first_name', 'last_name', 'email')}),
         (
             _('Permissões'),
@@ -47,7 +48,7 @@ class CustomAdmin(UserAdmin):
                 )
             }
         ),
-        (_('Dadas Importantes'), {'fields': ('last_login', 'date_joined')})
+        (_('Dados Importantes'), {'fields': ('last_login', 'date_joined')})
     )
 
     def save_model(self, request: Any, obj: Any, form: Any, change: Any) -> None:

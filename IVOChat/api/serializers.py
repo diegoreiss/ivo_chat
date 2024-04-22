@@ -18,7 +18,7 @@ class CustomUserCreateSerializer(serializers.ModelSerializer):
 class CustomUserRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['pk', 'username', 'role']
+        fields = ['pk', 'first_name', 'last_name', 'username', 'role']
 
 
 class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
