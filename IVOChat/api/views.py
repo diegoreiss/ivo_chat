@@ -97,6 +97,7 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
             self.object.set_password(password)
             self.object.is_active = True
             self.object.save()
+            cache.delete(f'CustomUserCurrentRetrieve_pk_{self.object.pk}')
 
             email_utils.send_email(
                 'I.V.O Chat - Nova Senha',
@@ -117,8 +118,16 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
         
         def update_from_aluno(self, request):
             password = self.request.data.get('password')
+            confirm_password = self.request.data.get('confirm_password')
+            if confirm_password != password:
+                return Response({
+                    'message': 'Senhas não coincidem.'
+                }, status=status.HTTP_412_PRECONDITION_FAILED)
+
             self.object.set_password(password)
+            self.object.is_password_changed = True
             self.object.save()
+            cache.delete(f'CustomUserCurrentRetrieve_pk_{self.object.pk}')
 
             return Response({
                 'message': 'Senha atualizada com sucesso!'
