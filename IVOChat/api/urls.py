@@ -11,5 +11,5 @@ urlpatterns = [
     path('user/', view=views.CustomUserListCreate.as_view(), name='customuser_view_create'),
     path('user/role/aluno/', view=views.CustomUserByRoleAlunoAPIView.as_view(), name='customuser_by_role_admin_view'),
     path('user/current/', view=views.CustomUserCurrentRetrieve.as_view(), name='customuser_current_role_view'),
-    path('user/<int:pk>/', view=views.CustomUserRetrieveUpdateDestroy.as_view(), name='customuser_view_update'),
+    path('user/<int:pk>/role/aluno/update/password', view=views.CustomUserChangePasswordAPIView.as_view(), name='customuser_password_update'),
 ]
