@@ -22,6 +22,8 @@ class CustomUserRetrieveSerializer(serializers.ModelSerializer):
 
 
 class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
+    confirm_password = serializers.CharField()
+
     class Meta:
         model = CustomUser
-        fields = ['password']
+        fields = ['password', 'confirm_password']
