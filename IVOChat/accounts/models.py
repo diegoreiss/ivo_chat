@@ -1,3 +1,4 @@
+import uuid
 from typing import Iterable, Optional
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -13,6 +14,7 @@ class CustomUser(AbstractUser):
         (ADMIN, 'Admin'),
     )
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     username = models.CharField(max_length=255, unique=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
     password = models.CharField(max_length=255, blank=False, null=False)

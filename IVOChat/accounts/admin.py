@@ -31,7 +31,7 @@ class CustomAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ('username', 'email', 'role', 'is_staff', 'is_password_changed')
+    list_display = ('uuid', 'pk', 'username', 'email', 'role', 'is_staff', 'is_password_changed')
     fieldsets = (
         (_('Dados de autenticação'), {'fields': ('username', 'password')}),
         (_('Dados de conta'), {'fields': ('role', 'is_password_changed')}),
