@@ -11,6 +11,7 @@ daphne==4.1.0
 Django==5.0.3
 django-cors-headers==4.3.1
 django-filter==24.2
+django-redis==5.4.0
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
@@ -24,6 +25,7 @@ jsonschema-specifications==2023.12.1
 Markdown==3.6
 msgpack==1.0.8
 packaging==24.0
+psycopg2-binary==2.9.9
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pycparser==2.22

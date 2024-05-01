@@ -1,13 +1,15 @@
 services:
 
-  redis:
-    container_name: ivo_redis_stack
-    image: redis/redis-stack:latest
-    restart: always
-
+  portainer:
+    image: portainer/portainer-ce:alpine
+    container_name: ivo_portainer
+    command: -H unix:///var/run/docker.sock
     ports:
-      - 6379:6379
-      - 8001:8001
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer-data:/data"
+    restart: always
 
   db:
     container_name: ivo_db
@@ -31,7 +33,7 @@ services:
       - local_pgdata:/var/lib/postgresql/data
 
   pgadmin:
-    container_name: ivo_db_pgadmin4
+    container_name: ivo_db_mgmt
     image: dpage/pgadmin4
     restart: always
     ports:
@@ -41,7 +43,17 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ivo
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-  
+
+  redis:
+    container_name: ivo_cache
+    image: redis/redis-stack:latest
+    restart: always
+
+    ports:
+      - 6379:6379
+      - 8001:8001
+
 volumes:
   local_pgdata:
   pgadmin-data:
+  portainer-data:
