@@ -1,0 +1,59 @@
+services:
+
+  portainer:
+    image: portainer/portainer-ce:alpine
+    container_name: ivo_portainer
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer-data:/data"
+    restart: always
+
+  db:
+    container_name: ivo_db
+    image: postgres:16.2-alpine3.19
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_USER: ivo
+      POSTGRES_PASSWORD: ivo
+      POSTGRES_DB: ivo
+    ports:
+      - 5432:5432
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: ivo_db_mgmt
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ivo@chat.com
+      PGADMIN_DEFAULT_PASSWORD: ivo
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+  redis:
+    container_name: ivo_cache
+    image: redis/redis-stack:latest
+    restart: always
+
+    ports:
+      - 6379:6379
+      - 8001:8001
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
+  portainer-data:
