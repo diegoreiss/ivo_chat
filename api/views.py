@@ -1,17 +1,21 @@
 from django.core.cache import cache
-from rest_framework import generics, status
+from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
 from . import serializers
 from . import permissions
 from . import models
 from utils import email_utils
+from services.bot_connector import IntentManipulation
 
 
 # Create your views here.
+
+page_query = openapi.Parameter('page', openapi.IN_QUERY, description='Página', type=openapi.TYPE_INTEGER)
 
 class CustomUserListCreate(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
@@ -145,3 +149,71 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
 
         return response
 
+class IntentListCreate(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    @swagger_auto_schema(operation_summary='Retorna todas as perguntas', manual_parameters=(page_query,))
+    def get(self, request):
+        page = int(request.GET.get('page'))
+
+        if not page:
+            page = 1
+
+        intent_manipulation = IntentManipulation()
+        intents = intent_manipulation.get_all_intents(page)
+        intent_serializer = serializers.NLUSerializer(data=intents['data'])
+
+        if intent_serializer.is_valid():
+            serialized = intent_serializer.data
+
+            return Response(serialized, status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    @swagger_auto_schema(operation_summary='Cria uma intent', request_body=serializers.IntentSerializer)
+    def post(self, request):
+        intent_manipulation = IntentManipulation()
+
+        intent_serializer = serializers.IntentSerializer(data=request.data)
+
+        if intent_serializer.is_valid():
+            serialized = intent_serializer.data
+
+            res = intent_manipulation.create_intent(serialized)
+
+            if res.status_code == 201:
+                return Response(serialized, status=status.HTTP_201_CREATED)
+
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class IntentListBy(views.APIView):
+    def get(self, request, intent):
+        intent_manipulation = IntentManipulation()
+        intent = intent_manipulation.get_intent_by_name(intent)
+
+        if not intent:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+
+        intent_serializer = serializers.IntentSerializer(data=intent)
+
+        if intent_serializer.is_valid():
+            serialized = intent_serializer.data
+
+            return Response(serialized, status=status.HTTP_200_OK)
+
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+class IntentUpdateExamples(views.APIView):
+
+    @swagger_auto_schema(request_body=serializers.IntentExamplesSerializer)
+    def patch(self, request, intent):
+        intent_manipulation = IntentManipulation()
+        print(request.data)
+        res = intent_manipulation.edit_intent_examples(intent, request.data)
+
+        if res.status_code != 200:
+            return Response({}, status=res.status_code)
+
+        return Response({}, status=200)
