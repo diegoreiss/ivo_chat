@@ -38,3 +38,7 @@ class IntentExamplesSerializer(serializers.Serializer):
 class NLUSerializer(serializers.Serializer):
     total_pages = serializers.IntegerField()
     nlu = serializers.DictField(child=serializers.ListField(child=IntentSerializer()))
+
+class UtterSerializer(serializers.Serializer):
+    total_pages = serializers.IntegerField()
+    responses = serializers.JSONField()

@@ -21,6 +21,7 @@ bot_urls = [
     path('bot/intent/', view=views.IntentListCreate.as_view(), name='intent_view_create'),
     path('bot/intent/<str:intent>', view=views.IntentListBy.as_view(), name='intent_list_by'),
     path('bot/intent/<str:intent>/change/examples', view=views.IntentUpdateExamples.as_view(), name='intent_update_examples'),
+    path('bot/response/', view=views.ResponseRetrieveCreate.as_view(), name='response_view_create'),
 ]
 
 urlpatterns = [

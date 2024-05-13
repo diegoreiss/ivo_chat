@@ -10,12 +10,14 @@ from . import serializers
 from . import permissions
 from . import models
 from utils import email_utils
-from services.bot_connector import IntentManipulation
+from services.bot_connector import (
+    IntentManipulation, ResponseManipulation
+)
 
 
 # Create your views here.
 
-page_query = openapi.Parameter('page', openapi.IN_QUERY, description='Página', type=openapi.TYPE_INTEGER)
+page_query = openapi.Parameter('page', openapi.IN_QUERY, description='Página', type=openapi.TYPE_INTEGER, required=True, default=1)
 
 class CustomUserListCreate(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
@@ -189,6 +191,9 @@ class IntentListCreate(views.APIView):
 
 
 class IntentListBy(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
     def get(self, request, intent):
         intent_manipulation = IntentManipulation()
         intent = intent_manipulation.get_intent_by_name(intent)
@@ -206,14 +211,37 @@ class IntentListBy(views.APIView):
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 class IntentUpdateExamples(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     @swagger_auto_schema(request_body=serializers.IntentExamplesSerializer)
     def patch(self, request, intent):
         intent_manipulation = IntentManipulation()
-        print(request.data)
         res = intent_manipulation.edit_intent_examples(intent, request.data)
 
         if res.status_code != 200:
             return Response({}, status=res.status_code)
+
+        return Response({}, status=200)
+
+class ResponseRetrieveCreate(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    @swagger_auto_schema(manual_parameters=(page_query,))
+    def get(self, request):
+        page = int(request.GET.get('page'))
+
+        if not page:
+            page = 1
+
+        res_manipulation = ResponseManipulation()
+        responses = res_manipulation.get_all_responses(page)
+        res_json = responses.json()
+
+        response_serializer = serializers.UtterSerializer(data=res_json['data'])
+
+        if response_serializer.is_valid():
+            return Response(response_serializer.data, status=200)
 
         return Response({}, status=200)
