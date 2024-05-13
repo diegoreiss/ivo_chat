@@ -27,3 +27,14 @@ class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser
         fields = ['password', 'confirm_password']
+
+class IntentSerializer(serializers.Serializer):
+    intent = serializers.CharField(default="")
+    examples = serializers.CharField(allow_blank=True, required=False, default="")
+
+class IntentExamplesSerializer(serializers.Serializer):
+    examples = serializers.CharField()
+
+class NLUSerializer(serializers.Serializer):
+    total_pages = serializers.IntegerField()
+    nlu = serializers.DictField(child=serializers.ListField(child=IntentSerializer()))
