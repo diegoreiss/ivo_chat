@@ -33,7 +33,7 @@ class CustomAdmin(UserAdmin):
     list_display = ('uuid', 'pk', 'username', 'email', 'role', 'is_staff', 'is_active', 'is_password_changed')
     fieldsets = (
         (_('Dados de autenticação'), {'fields': ('username', 'password')}),
-        (_('Dados de conta'), {'fields': ('role', 'is_password_changed', 'turmas')}),
+        (_('Dados de conta'), {'fields': ('role', 'is_password_changed', 'turma')}),
         (_('Dados Pessoais'), {'fields': ('first_name', 'last_name', 'email')}),
         (
             _('Permissões'),
@@ -65,3 +65,7 @@ class CustomDisciplinaAdmin(admin.ModelAdmin):
 @admin.register(models.Turma)
 class CustomTurmaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'turno', 'calendario', 'uuid', 'pk')
+
+@admin.register(models.CustomUserDisciplina)
+class CustomUserDisciplinaModel(admin.ModelAdmin):
+    list_display = ('custom_user', 'disciplina', 'falta', 'nota')
