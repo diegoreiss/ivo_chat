@@ -190,6 +190,42 @@ class IntentListCreate(views.APIView):
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class IntentNamesList(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    def get(self, request):
+        intent_manipulation = IntentManipulation()
+        intents_names = intent_manipulation.get_all_intents_names()
+        intents_names_serializer = serializers.IntentNamesSerializer(data=intents_names)
+
+        if intents_names_serializer.is_valid():
+            serialized = intents_names_serializer.data
+
+            return Response(serialized, status=status.HTTP_200_OK)
+
+        return Response({}, status=400)
+        
+
+class AvailableIntentNamesList(views.APIView):
+    pauthentication_classes = (JWTAuthentication, )
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    def get(self, request):
+        intent_manipulation = IntentManipulation()
+        available_intents_names = intent_manipulation.get_all_available_intents_names()
+
+        if available_intents_names.status_code == 200:
+            intents_names_serializer = serializers.IntentNamesSerializer(data=available_intents_names.json())
+
+            if intents_names_serializer.is_valid():
+                serialized = intents_names_serializer.data
+
+                return Response(serialized, status=available_intents_names.status_code)
+
+        return Response({}, status=400)
+
+
 class IntentListBy(views.APIView):
     pauthentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
@@ -245,3 +281,37 @@ class ResponseRetrieveCreate(views.APIView):
             return Response(response_serializer.data, status=200)
 
         return Response({}, status=200)
+    
+    @swagger_auto_schema(
+        request_body=serializers.DynamicResponseSerializer
+    )
+    def post(self, request):
+        response_serializer = serializers.DynamicResponseSerializer(data=request.data)
+
+        if response_serializer.is_valid():
+            serialized = response_serializer.data
+            response_manipulation = ResponseManipulation()
+            res_json = response_manipulation.create_response(serialized)
+
+            if res_json.status_code == status.HTTP_201_CREATED:
+                return Response({}, status=res_json.status_code)
+
+        return Response({}, status=400)
+
+
+class ResponsesUpdateTexts(views.APIView):
+    pauthentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    @swagger_auto_schema(request_body=serializers.ResponseTextsSerializer)
+    def patch(self, request, response_name):
+        response_manipulation = ResponseManipulation()
+        response_text_serializer = serializers.ResponseTextsSerializer(data=request.data)
+
+        if response_text_serializer.is_valid():
+            res = response_manipulation.edit_response_examples(response_name, request.data)
+
+            if res.status_code == status.HTTP_200_OK:
+                return Response({}, status=res.status_code)
+        
+        return Response({}, status=400)
