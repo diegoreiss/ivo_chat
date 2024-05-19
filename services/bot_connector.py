@@ -14,6 +14,20 @@ class IntentManipulation:
     
         return res.json()
     
+    def get_all_intents_names(self):
+        res = requests.get(f'{CONNECTOR_URL}{WEBHOOK}/intent/names', headers={
+            'Accept': 'application/json'
+        })
+
+        return res.json()
+    
+    def get_all_available_intents_names(self):
+        res = requests.get(f'{CONNECTOR_URL}{WEBHOOK}/intent/names/available', headers={
+            'Accept': 'application/json'
+        })
+
+        return res
+    
     def get_intent_by_name(self, intent):
         res = requests.get(f'{CONNECTOR_URL}{WEBHOOK}/intent/{intent}', headers={
             'Accept': 'application/json',
@@ -44,5 +58,21 @@ class ResponseManipulation:
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         })
+
+        return res
+    
+    def create_response(self, response):
+        res = requests.post(f'{CONNECTOR_URL}{WEBHOOK}/response', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, json=response)
+
+        return res
+    
+    def edit_response_examples(self, response_name, texts):
+        res = requests.patch(f'{CONNECTOR_URL}{WEBHOOK}/response/{response_name}/change/texts', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, json=texts)
 
         return res
