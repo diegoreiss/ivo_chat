@@ -29,23 +29,33 @@ class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
         model = models.CustomUser
         fields = ['password', 'confirm_password']
 
+
 class IntentSerializer(serializers.Serializer):
     intent = serializers.CharField(default="")
     examples = serializers.CharField(allow_blank=True, required=False, default="")
 
+
 class IntentExamplesSerializer(serializers.Serializer):
     examples = serializers.CharField()
 
+
 class IntentNamesSerializer(serializers.Serializer):
     data = serializers.ListField(child=serializers.CharField())
+
 
 class NLUSerializer(serializers.Serializer):
     total_pages = serializers.IntegerField()
     nlu = serializers.DictField(child=serializers.ListField(child=IntentSerializer()))
 
+
 class UtterSerializer(serializers.Serializer):
     total_pages = serializers.IntegerField()
     responses = serializers.JSONField()
+
+
+class ResponseNamesSerializer(serializers.Serializer):
+    data = serializers.ListField(child=serializers.CharField())
+
 
 class DynamicResponseSerializer(serializers.Serializer):
     class Meta:
@@ -128,4 +138,140 @@ class ResponseTextsSerializer(serializers.Serializer):
             child=serializers.CharField()
         )
     )
-    
+
+
+class StoriesSerializer(serializers.Serializer):
+    class Meta:
+        swagger_schema_fields = {
+            'type': openapi.TYPE_OBJECT,
+            'title': 'All Stories',
+            'properties': {
+                'data': openapi.Schema(
+                    title='Content of stories',
+                    type=openapi.TYPE_ARRAY,
+                    items=openapi.Schema(
+                        title='Story',
+                        type=openapi.TYPE_OBJECT,
+                        properties={
+                            'story': openapi.Schema(
+                                type=openapi.TYPE_STRING,
+                                description='Story name'
+                            ),
+                            'steps': openapi.Schema(
+                                type=openapi.TYPE_ARRAY,
+                                description='Steps of story',
+                                items=openapi.Schema(
+                                    title='Step',
+                                    type=openapi.TYPE_OBJECT,
+                                    oneOf=[
+                                        openapi.Schema(
+                                            type=openapi.TYPE_OBJECT,
+                                            properties={
+                                                'intent': openapi.Schema(
+                                                    type=openapi.TYPE_STRING,
+                                                    description='A intent of step'
+                                                ),                                               
+                                            }
+                                        ),
+                                        openapi.Schema(
+                                            type=openapi.TYPE_OBJECT,
+                                            properties={
+                                                'action': openapi.Schema(
+                                                    type=openapi.TYPE_STRING,
+                                                    description='A intent of step'
+                                                ),                                               
+                                            }
+                                        ),
+                                    ]
+                                )
+                            )
+                        }
+                    )
+                )
+            }
+        }
+
+
+class StoryStepsSerializer(serializers.Serializer):
+    steps = serializers.ListField()
+
+    class Meta:
+        swagger_schema_fields = {
+            'type': openapi.TYPE_OBJECT,
+            'title': 'Steps',
+            'properties': {
+                'steps': openapi.Schema(
+                    title='Story Steps',
+                    type=openapi.TYPE_ARRAY,
+                    items=openapi.Schema(
+                        title='Steps',
+                        type=openapi.TYPE_OBJECT,
+                        oneOf=[
+                            openapi.Schema(
+                                type=openapi.TYPE_OBJECT,
+                                properties={
+                                    'intent': openapi.Schema(
+                                        type=openapi.TYPE_STRING,
+                                        description='A intent of step'
+                                    )
+                                }
+                            ),
+                            openapi.Schema(
+                                type=openapi.TYPE_OBJECT,
+                                properties={
+                                    'action': openapi.Schema(
+                                        type=openapi.TYPE_STRING,
+                                        description='A action of step'
+                                    )
+                                }
+                            )
+                        ]
+                    )
+                )
+            }
+        }
+
+
+class StoryCreateSerializer(serializers.Serializer):
+    class Meta:
+        swagger_schema_fields = {
+            'type': openapi.TYPE_OBJECT,
+            'title': 'Story',
+            'properties': {
+                'data': openapi.Schema(
+                    title='Story content',
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'story': openapi.Schema(
+                            type=openapi.TYPE_STRING
+                        ),
+                        'steps': openapi.Schema(
+                            type=openapi.TYPE_ARRAY,
+                            items=openapi.Schema(
+                                type=openapi.TYPE_OBJECT,
+                                oneOf=[
+                                    openapi.Schema(
+                                        type=openapi.TYPE_OBJECT,
+                                        properties={
+                                            'intent': openapi.Schema(
+                                                type=openapi.TYPE_STRING,
+                                                description='A intent of step'
+                                            )
+                                        }
+                                    ),
+                                    openapi.Schema(
+                                        type=openapi.TYPE_OBJECT,
+                                        properties={
+                                            'action': openapi.Schema(
+                                                type=openapi.TYPE_STRING,
+                                                description='A action of step'
+                                            )
+                                        }
+                                    )
+                                ]
+                            )
+                        )
+                    }
+                )
+            }
+        }

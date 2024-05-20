@@ -24,7 +24,10 @@ bot_urls = [
     path('bot/intent/<str:intent>', view=views.IntentListBy.as_view(), name='intent_list_by'),
     path('bot/intent/<str:intent>/change/examples', view=views.IntentUpdateExamples.as_view(), name='intent_update_examples'),
     path('bot/response/', view=views.ResponseRetrieveCreate.as_view(), name='response_view_create'),
+    path('bot/response/names/', view=views.ResponseNamesRetrieve.as_view(), name='response_list_names'),
     path('bot/response/<str:response_name>/change/texts/', view=views.ResponsesUpdateTexts.as_view(), name='response_update_texts'),
+    path('bot/stories/', view=views.StoriesListCreate.as_view(), name='stories_list_create'),
+    path('bot/stories/<str:story>/change/steps/', view=views.StoriesStepsUpdate.as_view(), name='stories_update_steps'),
 ]
 
 urlpatterns = [

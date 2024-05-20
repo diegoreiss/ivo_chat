@@ -11,7 +11,7 @@ from . import permissions
 from . import models
 from utils import email_utils
 from services.bot_connector import (
-    IntentManipulation, ResponseManipulation
+    IntentManipulation, ResponseManipulation, StoriesManipulation
 )
 
 
@@ -152,7 +152,7 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
         return response
 
 class IntentListCreate(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     @swagger_auto_schema(operation_summary='Retorna todas as perguntas', manual_parameters=(page_query,))
@@ -191,7 +191,7 @@ class IntentListCreate(views.APIView):
 
 
 class IntentNamesList(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication,)
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     def get(self, request):
@@ -208,7 +208,7 @@ class IntentNamesList(views.APIView):
         
 
 class AvailableIntentNamesList(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     def get(self, request):
@@ -227,7 +227,7 @@ class AvailableIntentNamesList(views.APIView):
 
 
 class IntentListBy(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     def get(self, request, intent):
@@ -247,7 +247,7 @@ class IntentListBy(views.APIView):
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 class IntentUpdateExamples(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     @swagger_auto_schema(request_body=serializers.IntentExamplesSerializer)
@@ -261,7 +261,7 @@ class IntentUpdateExamples(views.APIView):
         return Response({}, status=200)
 
 class ResponseRetrieveCreate(views.APIView):
-    pauthentication_classes = (JWTAuthentication, )
+    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     @swagger_auto_schema(manual_parameters=(page_query,))
@@ -299,8 +299,31 @@ class ResponseRetrieveCreate(views.APIView):
         return Response({}, status=400)
 
 
+class ResponseNamesRetrieve(views.APIView):
+    @swagger_auto_schema(responses={
+        status.HTTP_200_OK: openapi.Response(
+            description='Success Response',
+            schema=serializers.ResponseNamesSerializer
+        )
+    })
+    def get(self, request):
+        response_manipulation = ResponseManipulation()
+        res = response_manipulation.get_all_responses_names()
+
+        match res.status_code:
+            case status.HTTP_400_BAD_REQUEST | \
+                status.HTTP_401_UNAUTHORIZED | \
+                status.HTTP_403_FORBIDDEN:
+
+                return Response({}, status=res.status_code)
+            case status.HTTP_200_OK:
+                return Response(res.json(), status=res.status_code)
+            case _:
+                return Response({}, status=res.status_code)
+
+
 class ResponsesUpdateTexts(views.APIView):
-    pauthentication_classes = (JWTAuthentication,)
+    authentication_classes = (JWTAuthentication,)
     permission_classes = (IsAuthenticated, permissions.IsAdmin)
 
     @swagger_auto_schema(request_body=serializers.ResponseTextsSerializer)
@@ -315,3 +338,67 @@ class ResponsesUpdateTexts(views.APIView):
                 return Response({}, status=res.status_code)
         
         return Response({}, status=400)
+
+
+class StoriesListCreate(views.APIView):
+    @swagger_auto_schema(responses={
+        status.HTTP_200_OK: openapi.Response(
+            description='Success Response',
+            schema=serializers.StoriesSerializer
+        )
+    })
+    def get(self, request):
+        stories_manipulation = StoriesManipulation()
+        res = stories_manipulation.get_all_stories()
+
+        match res.status_code:
+            case status.HTTP_400_BAD_REQUEST | \
+                 status.HTTP_401_UNAUTHORIZED | \
+                 status.HTTP_403_FORBIDDEN:
+                return Response({}, status=res.status_code)
+            case status.HTTP_200_OK:
+                return Response(res.json(), status=res.status_code)
+            case _:
+                return Response({}, status=res.status_code)
+    
+    @swagger_auto_schema(request_body=serializers.StoryCreateSerializer)
+    def post(self, request):
+        stories_manipulation = StoriesManipulation()
+        result = stories_manipulation.create_story(request.data)
+
+        match result.status_code:
+            case status.HTTP_400_BAD_REQUEST | \
+                status.HTTP_401_UNAUTHORIZED | \
+                status.HTTP_403_FORBIDDEN:
+                
+                return Response({}, status=result.status_code)
+            case status.HTTP_201_CREATED:
+                return Response({}, status=result.status_code)
+
+        return Response({}, status=418)
+
+
+class StoriesStepsUpdate(views.APIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
+    @swagger_auto_schema(request_body=serializers.StoryStepsSerializer)
+    def patch(self, request, story):
+        stories_steps_serializer = serializers.StoryStepsSerializer(data=request.data)
+
+        if not stories_steps_serializer.is_valid():
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+        stories_manipulation = StoriesManipulation()
+        res = stories_manipulation.change_story_steps(story, stories_steps_serializer.data)
+
+        match res.status_code:
+            case status.HTTP_400_BAD_REQUEST | \
+                status.HTTP_401_UNAUTHORIZED | \
+                status.HTTP_403_FORBIDDEN:
+
+                return Response({}, status=res.status_code)
+            case status.HTTP_200_OK:
+                return Response({}, status=res.status_code)
+            case _:
+                return Response({}, status=res.status_code)

@@ -61,6 +61,14 @@ class ResponseManipulation:
 
         return res
     
+    def get_all_responses_names(self):
+        res = requests.get(f'{CONNECTOR_URL}{WEBHOOK}/response/names', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        })
+
+        return res
+    
     def create_response(self, response):
         res = requests.post(f'{CONNECTOR_URL}{WEBHOOK}/response', headers={
             'Accept': 'application/json',
@@ -74,5 +82,30 @@ class ResponseManipulation:
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }, json=texts)
+
+        return res
+
+
+class StoriesManipulation:
+    def get_all_stories(self):
+        res = requests.get(f'{CONNECTOR_URL}{WEBHOOK}/stories', headers={
+            'Accept': 'application/json',
+        })
+
+        return res
+    
+    def create_story(self, story):
+        res = requests.post(f'{CONNECTOR_URL}{WEBHOOK}/stories', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, json=story)
+
+        return res
+    
+    def change_story_steps(self, story, step):
+        res = requests.patch(f'{CONNECTOR_URL}{WEBHOOK}/stories/{story}/change/steps', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, json=step)
 
         return res
