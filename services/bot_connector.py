@@ -109,3 +109,15 @@ class StoriesManipulation:
         }, json=step)
 
         return res
+
+
+class RestInput:
+    REST_INPUT_WEBHOOK = '/webhooks/rest'
+
+    def send_message_to_bot(self, message_info):
+        res = requests.post(f'{CONNECTOR_URL}{RestInput.REST_INPUT_WEBHOOK}/webhook', headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',           
+        }, json=message_info)
+
+        return res

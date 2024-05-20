@@ -28,6 +28,7 @@ bot_urls = [
     path('bot/response/<str:response_name>/change/texts/', view=views.ResponsesUpdateTexts.as_view(), name='response_update_texts'),
     path('bot/stories/', view=views.StoriesListCreate.as_view(), name='stories_list_create'),
     path('bot/stories/<str:story>/change/steps/', view=views.StoriesStepsUpdate.as_view(), name='stories_update_steps'),
+    path('bot/message/', view=views.MessageToBotSender.as_view(), name='message_bot_sender'),
 ]
 
 urlpatterns = [

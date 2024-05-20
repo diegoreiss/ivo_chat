@@ -11,7 +11,8 @@ from . import permissions
 from . import models
 from utils import email_utils
 from services.bot_connector import (
-    IntentManipulation, ResponseManipulation, StoriesManipulation
+    IntentManipulation, ResponseManipulation, StoriesManipulation,
+    RestInput
 )
 
 
@@ -402,3 +403,27 @@ class StoriesStepsUpdate(views.APIView):
                 return Response({}, status=res.status_code)
             case _:
                 return Response({}, status=res.status_code)
+
+
+class MessageToBotSender(views.APIView):
+    authentication_classes = (JWTAuthentication,)
+
+    @swagger_auto_schema(request_body=serializers.RestInputSendMessageSerializer)
+    def post(self, request):
+        print(request)
+
+        rest_input_send_message_serializer = serializers.RestInputSendMessageSerializer(data=request.data)
+
+        if not rest_input_send_message_serializer.is_valid():
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        
+        rest_input = RestInput()
+        res = rest_input.send_message_to_bot(rest_input_send_message_serializer.data)
+
+        match res.status_code:
+            case status.HTTP_400_BAD_REQUEST:
+                return Response({}, status=res.status_code)
+            case status.HTTP_200_OK:
+                return Response(res.json(), status=res.status_code)
+
+        return Response({'valid': rest_input_send_message_serializer.is_valid()}, status=418)
