@@ -12,6 +12,7 @@ token_urls = [
 
 user_urls = [
     path('user/', view=views.CustomUserListCreate.as_view(), name='customuser_view_create'),
+    path('user/minimal/', view=views.CustomUserMinimalRetrieve.as_view(), name='customuser_minimal_view'),
     path('user/role/aluno/', view=views.CustomUserByRoleAlunoAPIView.as_view(), name='customuser_by_role_admin_view'),
     path('user/current/', view=views.CustomUserCurrentRetrieve.as_view(), name='customuser_current_role_view'),
     path('user/<str:uuid>/role/aluno/update/password', view=views.CustomUserChangePasswordAPIView.as_view(), name='customuser_password_update'),

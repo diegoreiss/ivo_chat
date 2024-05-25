@@ -11,12 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from logging import getLevelName
 from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+
+# python-dotenv
+
+load_dotenv(override=True)
+
+# logging
+
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='[%(asctime)s] %(levelname)-8s | %(message)s',
+#     datefmt="%d/%m/%Y %H:%M:%S"
+# )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,7 +104,7 @@ ASGI_APPLICATION = 'conf.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DB_CONNECTION = os.environ['DB_CONNECTION'].lower()
+DB_CONNECTION = os.environ['DB_CONNECTION']
 
 if not DB_CONNECTION or DB_CONNECTION not in ('default', 'production'):
     raise ValueError(f'Invalid enviroment value, allowed values: [default, production]')
@@ -242,13 +254,6 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     },
-    'chat_history': {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost:6379/2",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    },
 }
 
 # Cors Headers
@@ -263,7 +268,7 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [
-                {'host': 'localhost', 'port': 6379, 'db': 3}
+                {'host': 'localhost', 'port': 6379, 'db': 1}
             ]
         }
     }

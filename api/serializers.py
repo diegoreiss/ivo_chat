@@ -10,6 +10,12 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = ['uuid', 'pk', 'first_name', 'last_name', 'username', 'email', 'role', 'cpf', 'data_nascimento', 'is_active', 'is_password_changed']
 
 
+class CustomUserMinimalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CustomUser
+        fields = ['uuid', 'pk', 'first_name', 'last_name']
+
+
 class CustomUserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser

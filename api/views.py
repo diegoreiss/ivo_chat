@@ -40,7 +40,7 @@ class CustomUserCurrentRetrieve(generics.RetrieveAPIView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        cache_key = f'CustomUserCurrentRetrieve_uuid_{self.request.user.uuid}'
+        cache_key = f'users_data:CustomUserCurrentRetrieve_uuid_{self.request.user.uuid}'
         user_cached = cache.get(cache_key)
 
         if user_cached:
@@ -50,6 +50,14 @@ class CustomUserCurrentRetrieve(generics.RetrieveAPIView):
 
         return self.request.user
 
+
+class CustomUserMinimalRetrieve(generics.RetrieveAPIView):
+    serializer_class = serializers.CustomUserMinimalSerializer
+    permission_classes = (IsAuthenticated, )
+
+    @swagger_auto_schema()
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 class CustomUserByRoleAlunoAPIView(generics.ListAPIView):
     serializer_class = serializers.CustomUserSerializer
@@ -101,7 +109,7 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
             self.object.set_password(password)
             self.object.is_active = True
             self.object.save()
-            cache.delete(f'CustomUserCurrentRetrieve_uuid_{self.object.uuid}')
+            cache.delete(f'users_data:CustomUserCurrentRetrieve_uuid_{self.object.uuid}')
 
             email_utils.send_email(
                 'I.V.O Chat - Nova Senha',
@@ -131,7 +139,7 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
             self.object.set_password(password)
             self.object.is_password_changed = True
             self.object.save()
-            cache.delete(f'CustomUserCurrentRetrieve_uuid_{self.object.uuid}')
+            cache.delete(f'users_data:CustomUserCurrentRetrieve_uuid_{self.object.uuid}')
 
             return Response({
                 'message': 'Senha atualizada com sucesso!'
