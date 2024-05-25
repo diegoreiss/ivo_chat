@@ -1,0 +1,15 @@
+[
+  {
+    "model": "api.turma",
+    "pk": 1,
+    "fields": {
+      "uuid": "577f3488-70e6-4821-90ff-0fb32d940b39",
+      "nome": "3 Ano A",
+      "turno": 1,
+      "calendario": "Apresentaçãpo_CONTROL_PATRIMONIAL_2PAm85i.pptx",
+      "disciplinas": [
+        1
+      ]
+    }
+  }
+]
