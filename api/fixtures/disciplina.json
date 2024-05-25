@@ -1,0 +1,86 @@
+[
+  {
+    "model": "api.disciplina",
+    "pk": 1,
+    "fields": {
+      "nome": "Geografia"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 2,
+    "fields": {
+      "nome": "Matemática"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 3,
+    "fields": {
+      "nome": "Lingua Portuguesa"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 4,
+    "fields": {
+      "nome": "Biologia"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 5,
+    "fields": {
+      "nome": "Física"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 6,
+    "fields": {
+      "nome": "Química"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 7,
+    "fields": {
+      "nome": "Artes"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 8,
+    "fields": {
+      "nome": "Educação Física"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 9,
+    "fields": {
+      "nome": "Inglês"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 10,
+    "fields": {
+      "nome": "Filosofia"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 11,
+    "fields": {
+      "nome": "História"
+    }
+  },
+  {
+    "model": "api.disciplina",
+    "pk": 12,
+    "fields": {
+      "nome": "Sociologia"
+    }
+  }
+]

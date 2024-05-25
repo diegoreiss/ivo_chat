@@ -30,10 +30,10 @@ class CustomAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ('uuid', 'pk', 'username', 'email', 'role', 'is_staff', 'is_password_changed')
+    list_display = ('uuid', 'pk', 'username', 'email', 'role', 'is_staff', 'is_active', 'is_password_changed')
     fieldsets = (
         (_('Dados de autenticação'), {'fields': ('username', 'password')}),
-        (_('Dados de conta'), {'fields': ('role', 'is_password_changed')}),
+        (_('Dados de conta'), {'fields': ('role', 'is_password_changed', 'turma')}),
         (_('Dados Pessoais'), {'fields': ('first_name', 'last_name', 'email')}),
         (
             _('Permissões'),
@@ -57,3 +57,15 @@ class CustomAdmin(UserAdmin):
         return super().save_model(request, obj, form, change)
 
 
+@admin.register(models.Disciplina)
+class CustomDisciplinaAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'uuid', 'pk')
+
+
+@admin.register(models.Turma)
+class CustomTurmaAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'turno', 'calendario', 'uuid', 'pk')
+
+@admin.register(models.CustomUserDisciplina)
+class CustomUserDisciplinaModel(admin.ModelAdmin):
+    list_display = ('custom_user', 'disciplina', 'falta', 'nota')

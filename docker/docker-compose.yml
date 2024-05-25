@@ -1,5 +1,18 @@
 services:
 
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource,marcusolsson-json-datasource,simpod-json-datasource
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
   portainer:
     image: portainer/portainer-ce:alpine
     container_name: ivo_portainer
@@ -57,3 +70,4 @@ volumes:
   local_pgdata:
   pgadmin-data:
   portainer-data:
+  grafana-storage: {}
