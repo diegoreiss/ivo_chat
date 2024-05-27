@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-from logging import getLevelName
+import logging
 from datetime import timedelta
 from pathlib import Path
 
@@ -24,11 +24,7 @@ load_dotenv(override=True)
 
 # logging
 
-# logging.basicConfig(
-#     level=logging.DEBUG,
-#     format='[%(asctime)s] %(levelname)-8s | %(message)s',
-#     datefmt="%d/%m/%Y %H:%M:%S"
-# )
+logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,6 +127,9 @@ if DB_CONNECTION == 'production' and '' in CONNECTIONS['production'].values():
 DATABASES = {
     'default': CONNECTIONS[DB_CONNECTION]
 }
+
+logger.warning(f'Using Connection [{DB_CONNECTION}]')
+logger.warning(f'Using database engine [{DATABASES["default"]["ENGINE"]}]')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -241,6 +240,7 @@ SWAGGER_SETTINGS = {
             'in': 'header'
       }
    },
+   'DEFAULT_MODEL_RENDERING': 'example',
    'USE_SESSION_AUTH': False,
 }
 
@@ -250,6 +250,13 @@ CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://localhost:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+    "rasa_conversation_history": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
@@ -268,8 +275,8 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [
-                {'host': 'localhost', 'port': 6379, 'db': 1}
+                {'host': 'localhost', 'port': 6379, 'db': 2}
             ]
-        }
+        },
     }
 }
