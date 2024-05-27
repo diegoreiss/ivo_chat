@@ -1,7 +1,6 @@
 import json
 
 from django.core.cache import caches
-from django.core.serializers import serialize
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 
@@ -23,20 +22,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if not custom_user_cache:
             custom_user = await sync_to_async(CustomUser.objects.get, thread_sensitive=True)(uuid=self.room_name)
             custom_user_fields = {
-                'uuid': custom_user.uuid,
+                'uuid': str(custom_user.uuid),
                 'pk': custom_user.pk, 
                 'first_name': custom_user.first_name, 
-                'last_name': custom_user.last_name
+                'last_name': custom_user.last_name,
+                'username': custom_user.username,
             }
+
             default_cache.set(f'users_minimal_data:CustomUser_{self.room_name}', custom_user_fields, timeout=None)
             custom_user_cache = custom_user_fields
         
+        custom_user_cache['room_name'] = self.room_name
         logged_users_cache_list = default_cache.get('user_activity:logged_users')
         logged_users_cache_list.append(custom_user_cache)
-
-        logged_users_cache_list = list({user['uuid']:user for user in logged_users_cache_list}.values())
-
-        print(logged_users_cache_list)
+        logged_users_cache_list = list({u['uuid']: u for u in logged_users_cache_list}.values())
 
         default_cache.set('user_activity:logged_users', logged_users_cache_list, timeout=None)
 
@@ -46,15 +45,30 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def disconnect(self, code):
         default_cache = caches['default']
         logged_users_cache_list = default_cache.get('user_activity:logged_users')
-        logged_users_cache_list = list(filter(lambda user: str(user['uuid']) != self.room_name, logged_users_cache_list))
 
-        default_cache.set('user_activity:logged_users', logged_users_cache_list, timeout=None)
+        if logged_users_cache_list:
+            print(logged_users_cache_list)
+            new_list = list(filter(lambda user: user['uuid'] != self.room_name, logged_users_cache_list[:]))
+            print(new_list)
+
+            default_cache.set('user_activity:logged_users', new_list, timeout=None)
 
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     async def receive(self, text_data=None, bytes_data=None):
+        default_cache = caches['default']
+        chat_history_cache = default_cache.get(f'chat_history:{self.room_name}')
+
+        if not chat_history_cache:
+            chat_history_cache = []
+            default_cache.set(f'chat_history:{self.room_name}', chat_history_cache, timeout=259200)
+
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
+
+        print(text_data_json)
+        chat_history_cache.append(text_data_json)
+        default_cache.set(f'chat_history:{self.room_name}', chat_history_cache, timeout=259200)
 
         await self.channel_layer.group_send(self.room_group_name, {
             'type': 'chat_message',
