@@ -4,6 +4,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from . import views
 
 
+health_check_urls = [
+    path('ping/', view=views.Ping.as_view(), name='health_check')
+]
+
 token_urls = [
     path('token/', view=TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', view=TokenRefreshView.as_view(), name='token_refresh'),
@@ -32,10 +36,16 @@ bot_urls = [
     path('bot/message/', view=views.MessageToBotSender.as_view(), name='message_bot_sender'),
 ]
 
+metrics_urls = [
+    path('metrics/bot/', view=views.BotMetrics.as_view(), name='metrics')
+]
+
 urlpatterns = [
+    *health_check_urls,
     *token_urls,
     *user_urls,
-    *bot_urls
+    *bot_urls,
+    *metrics_urls
 ]
 
 

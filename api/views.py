@@ -1,8 +1,9 @@
-from django.core.cache import cache
+from django.core.cache import cache, caches
 from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_api_key.permissions import HasAPIKey
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
@@ -12,13 +13,23 @@ from . import models
 from utils import email_utils
 from services.bot_connector import (
     IntentManipulation, ResponseManipulation, StoriesManipulation,
-    RestInput
+    RestInput, BotMetricsInput
 )
 
 
 # Create your views here.
 
 page_query = openapi.Parameter('page', openapi.IN_QUERY, description='Página', type=openapi.TYPE_INTEGER, required=True, default=1)
+
+
+class Ping(views.APIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    @swagger_auto_schema(operation_summary='Health Check')
+    def get(self, request):
+        return Response({'result': 'pong'}, status=status.HTTP_200_OK)
+
 
 class CustomUserListCreate(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
@@ -309,6 +320,9 @@ class ResponseRetrieveCreate(views.APIView):
 
 
 class ResponseNamesRetrieve(views.APIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
     @swagger_auto_schema(responses={
         status.HTTP_200_OK: openapi.Response(
             description='Success Response',
@@ -350,6 +364,9 @@ class ResponsesUpdateTexts(views.APIView):
 
 
 class StoriesListCreate(views.APIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated, permissions.IsAdmin)
+
     @swagger_auto_schema(responses={
         status.HTTP_200_OK: openapi.Response(
             description='Success Response',
@@ -435,3 +452,35 @@ class MessageToBotSender(views.APIView):
                 return Response(res.json(), status=res.status_code)
 
         return Response({'valid': rest_input_send_message_serializer.is_valid()}, status=418)
+
+
+class BotMetrics(views.APIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey,)
+
+    # metrics_param = openapi.Parameter(
+    #     'metric',
+    #     openapi.IN_QUERY,
+    #     description='Escolha a métrica para visualizar',
+    #     type=openapi.TYPE_STRING,
+    #     enum=['bot_actions', 'test'],
+    #     required=True
+    # )
+
+    @swagger_auto_schema(operation_summary='Retorna as métricas do bot')
+    def get(self, request):
+        bot_metrics = BotMetricsInput()
+        metrics = bot_metrics.get_all_metrics()
+        metrics_json = metrics.json()
+
+        return Response(metrics_json, status=200)
+
+
+class AppMetrics(views.APIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey,)   
+
+    def get(self, request):
+        print(request.GET)
+
+        return Response({}, status=200)

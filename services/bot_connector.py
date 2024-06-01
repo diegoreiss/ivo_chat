@@ -121,3 +121,14 @@ class RestInput:
         }, json=message_info)
 
         return res
+
+
+class BotMetricsInput:
+    BOT_METRICS_WEBHOOK = '/webhooks/bot_metrics'
+
+    def get_all_metrics(self):
+        res = requests.get(f'{CONNECTOR_URL}{BotMetricsInput.BOT_METRICS_WEBHOOK}/', headers={
+            'Accept': 'application/json',
+        })
+    
+        return res
