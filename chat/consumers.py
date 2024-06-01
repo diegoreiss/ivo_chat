@@ -39,19 +39,29 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         default_cache.set('user_activity:logged_users', logged_users_cache_list, timeout=None)
 
+        await self.channel_layer.group_send('group_logged_users_room', {
+            'type': 'send_notification',
+            'message': logged_users_cache_list
+        })
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
         await self.accept()
     
     async def disconnect(self, code):
         default_cache = caches['default']
+        new_list = []
         logged_users_cache_list = default_cache.get('user_activity:logged_users')
 
         if logged_users_cache_list:
             print(logged_users_cache_list)
             new_list = list(filter(lambda user: user['uuid'] != self.room_name, logged_users_cache_list[:]))
-            print(new_list)
+            print(f'new list >>>: {new_list}')
 
             default_cache.set('user_activity:logged_users', new_list, timeout=None)
+
+            await self.channel_layer.group_send('group_logged_users_room', {
+                'type': 'send_notification',
+                'message': new_list
+            })
 
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
@@ -66,18 +76,41 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
 
-        print(text_data_json)
         chat_history_cache.append(text_data_json)
         default_cache.set(f'chat_history:{self.room_name}', chat_history_cache, timeout=259200)
 
         await self.channel_layer.group_send(self.room_group_name, {
             'type': 'chat_message',
-            'message': message
+            'message': text_data_json
         })
     
     async def chat_message(self, event):
+        await self.send(text_data=json.dumps(event))
+
+
+class UsersConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        default_cache = caches['default']
+        self.room_name = 'logged_users_room'
+        self.room_group_name = f'group_{self.room_name}'
+
+        await self.channel_layer.group_add(self.room_group_name, self.channel_name)
+        await self.accept()
+
+        users_logged_cache = default_cache.get('user_activity:logged_users', [])
+
+        await self.channel_layer.group_send(self.room_group_name, {
+            'type': 'send_notification',
+            'message': users_logged_cache
+        })
+    
+    async def disconnect(self, code):
+        await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
+    
+    async def send_notification(self, event):
         message = event['message']
 
         await self.send(text_data=json.dumps({
             'message': message
         }))
+    
