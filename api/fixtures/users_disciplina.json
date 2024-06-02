@@ -1,0 +1,2690 @@
+[
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 1,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 1,
+      "falta": 2,
+      "notas": [
+        "6.47",
+        "8.12",
+        "4.98"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 2,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "9.34",
+        "7.56",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 3,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 3,
+      "falta": 1,
+      "notas": [
+        "5.67",
+        "7.89",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 4,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 4,
+      "falta": 3,
+      "notas": [
+        "6.78",
+        "7.34",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 5,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 5,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "6.45",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 6,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 6,
+      "falta": 1,
+      "notas": [
+        "9.23",
+        "8.45",
+        "7.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 7,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 7,
+      "falta": 0,
+      "notas": [
+        "6.34",
+        "5.67",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 8,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 8,
+      "falta": 3,
+      "notas": [
+        "7.89",
+        "6.45",
+        "8.78"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 9,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "7.12",
+        "9.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 10,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 10,
+      "falta": 2,
+      "notas": [
+        "6.12",
+        "5.34",
+        "7.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 11,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "8.23",
+        "7.45",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 12,
+    "fields": {
+      "custom_user": 1,
+      "disciplina": 12,
+      "falta": 0,
+      "notas": [
+        "7.45",
+        "8.12",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 13,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.45",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 14,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 2,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "6.34",
+        "5.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 15,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "8.45",
+        "7.12",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 16,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 4,
+      "falta": 0,
+      "notas": [
+        "5.67",
+        "8.12",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 17,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 5,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "8.45",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 18,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 6,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 19,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "6.23",
+        "5.67",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 20,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "8.78",
+        "7.12",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 21,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "7.34",
+        "8.56",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 22,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 23,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 11,
+      "falta": 2,
+      "notas": [
+        "7.45",
+        "6.34",
+        "5.67"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 24,
+    "fields": {
+      "custom_user": 2,
+      "disciplina": 12,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 25,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "5.67",
+        "7.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 26,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 2,
+      "falta": 2,
+      "notas": [
+        "6.45",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 27,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 3,
+      "falta": 0,
+      "notas": [
+        "8.56",
+        "7.23",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 28,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 4,
+      "falta": 1,
+      "notas": [
+        "6.34",
+        "8.12",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 29,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 5,
+      "falta": 3,
+      "notas": [
+        "8.45",
+        "7.34",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 30,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 6,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "8.56",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 31,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 7,
+      "falta": 0,
+      "notas": [
+        "5.67",
+        "6.23",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 32,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 8,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "7.34",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 33,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 9,
+      "falta": 2,
+      "notas": [
+        "6.45",
+        "8.56",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 34,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 10,
+      "falta": 3,
+      "notas": [
+        "8.34",
+        "7.12",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 35,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 11,
+      "falta": 0,
+      "notas": [
+        "7.23",
+        "8.12",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 36,
+    "fields": {
+      "custom_user": 3,
+      "disciplina": 12,
+      "falta": 1,
+      "notas": [
+        "8.56",
+        "7.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 37,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 1,
+      "falta": 3,
+      "notas": [
+        "6.12",
+        "7.89",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 38,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.34",
+        "7.45",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 39,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 3,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 40,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 4,
+      "falta": 1,
+      "notas": [
+        "6.45",
+        "8.34",
+        "7.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 41,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 5,
+      "falta": 3,
+      "notas": [
+        "7.34",
+        "8.56",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 42,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 6,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.45",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 43,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 7,
+      "falta": 0,
+      "notas": [
+        "8.34",
+        "9.12",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 44,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 8,
+      "falta": 1,
+      "notas": [
+        "7.12",
+        "8.56",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 45,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 9,
+      "falta": 3,
+      "notas": [
+        "8.45",
+        "7.23",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 46,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 10,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "6.23",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 47,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 11,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 48,
+    "fields": {
+      "custom_user": 4,
+      "disciplina": 12,
+      "falta": 0,
+      "notas": [
+        "7.89",
+        "6.34",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 49,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 1,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.45",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 50,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 2,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "7.12",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 51,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 52,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 53,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "7.34",
+        "8.45",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 54,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 6,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 55,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 7,
+      "falta": 0,
+      "notas": [
+        "6.34",
+        "8.45",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 56,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "8.56",
+        "7.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 57,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "6.45",
+        "7.23",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 58,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "8.34",
+        "7.45",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 59,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "7.12",
+        "6.34",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 60,
+    "fields": {
+      "custom_user": 5,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.45",
+        "7.23",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 61,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "7.12",
+        "6.45",
+        "8.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 62,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 63,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 3,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 64,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 4,
+      "falta": 1,
+      "notas": [
+        "7.45",
+        "8.12",
+        "9.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 65,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 5,
+      "falta": 3,
+      "notas": [
+        "6.34",
+        "7.45",
+        "8.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 66,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 6,
+      "falta": 2,
+      "notas": [
+        "7.12",
+        "8.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 67,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 7,
+      "falta": 0,
+      "notas": [
+        "8.34",
+        "9.12",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 68,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 8,
+      "falta": 3,
+      "notas": [
+        "6.23",
+        "7.34",
+        "8.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 69,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 9,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 70,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 10,
+      "falta": 1,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 71,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 11,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 72,
+    "fields": {
+      "custom_user": 6,
+      "disciplina": 12,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "9.45",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 73,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.12",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 74,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.56",
+        "7.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 75,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "6.34",
+        "8.12",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 76,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "6.23",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 77,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "7.45",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 78,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 79,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.34",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 80,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "6.45",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 81,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 9,
+      "falta": 0,
+      "notas": [
+        "7.12",
+        "8.56",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 82,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 10,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "8.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 83,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "7.34",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 84,
+    "fields": {
+      "custom_user": 7,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 85,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 1,
+      "falta": 0,
+      "notas": [
+        "6.34",
+        "7.45",
+        "8.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 86,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 2,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 87,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 3,
+      "falta": 2,
+      "notas": [
+        "7.45",
+        "6.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 88,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 4,
+      "falta": 1,
+      "notas": [
+        "8.45",
+        "7.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 89,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 5,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "8.34",
+        "7.89"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 90,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 6,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.12",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 91,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 7,
+      "falta": 2,
+      "notas": [
+        "8.34",
+        "7.45",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 92,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 8,
+      "falta": 1,
+      "notas": [
+        "6.45",
+        "8.56",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 93,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 9,
+      "falta": 0,
+      "notas": [
+        "7.12",
+        "8.45",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 94,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 10,
+      "falta": 3,
+      "notas": [
+        "8.56",
+        "7.89",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 95,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 11,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 96,
+    "fields": {
+      "custom_user": 8,
+      "disciplina": 12,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 97,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 1,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 98,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 2,
+      "falta": 1,
+      "notas": [
+        "8.56",
+        "7.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 99,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 100,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 101,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 102,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "7.45",
+        "6.34",
+        "8.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 103,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.34",
+        "7.12",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 104,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "7.23",
+        "8.45",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 105,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "6.12",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 106,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "8.56",
+        "7.34",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 107,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "7.12",
+        "6.23",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 108,
+    "fields": {
+      "custom_user": 9,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.34",
+        "7.45",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 109,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "7.34",
+        "8.12",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 110,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.56",
+        "7.45",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 111,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "7.23",
+        "8.34",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 112,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "6.45",
+        "7.12",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 113,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "9.12",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 114,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "7.56",
+        "8.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 115,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 116,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "8.12",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 117,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "7.45",
+        "8.56",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 118,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "7.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 119,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "6.45",
+        "7.23",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 120,
+    "fields": {
+      "custom_user": 10,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.34",
+        "9.12",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 121,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "7.45",
+        "8.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 122,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 123,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "6.23",
+        "7.45",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 124,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 125,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "7.45",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 126,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 127,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "7.34",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 128,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 129,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "6.34",
+        "7.45",
+        "8.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 130,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 131,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "6.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 132,
+    "fields": {
+      "custom_user": 11,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.45",
+        "7.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 133,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "7.34",
+        "8.23",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 134,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.56",
+        "7.45",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 135,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "6.34",
+        "7.89",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 136,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "7.23",
+        "8.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 137,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 138,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "7.45",
+        "6.23",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 139,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 140,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "8.12",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 141,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "7.45",
+        "8.56",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 142,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "8.34",
+        "7.23",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 143,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "7.89",
+        "6.23",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 144,
+    "fields": {
+      "custom_user": 12,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "7.45",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 145,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 146,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "7.89",
+        "8.34",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 147,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "8.56",
+        "7.23",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 148,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "6.12",
+        "7.45",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 149,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "7.23",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 150,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "8.45",
+        "7.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 151,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "7.12",
+        "6.45",
+        "8.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 152,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "7.34",
+        "9.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 153,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 154,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 155,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "8.34",
+        "6.23",
+        "7.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 156,
+    "fields": {
+      "custom_user": 13,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "7.89",
+        "9.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 157,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "7.34",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 158,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "8.12",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 159,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.56",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 160,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "8.34",
+        "7.23",
+        "6.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 161,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "7.12",
+        "6.34",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 162,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 163,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "6.23",
+        "7.89",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 164,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "7.34",
+        "8.45",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 165,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 166,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "7.89",
+        "6.34",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 167,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "7.45",
+        "8.56",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 168,
+    "fields": {
+      "custom_user": 14,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "7.34",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 169,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "6.23",
+        "7.45",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 170,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "7.34",
+        "8.12",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 171,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "8.12",
+        "7.45",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 172,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "7.12",
+        "8.56",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 173,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.34",
+        "6.23",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 174,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "7.89",
+        "8.34",
+        "6.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 175,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.45",
+        "7.23",
+        "9.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 176,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "8.12",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 177,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "9.34",
+        "7.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 178,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "7.89",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 179,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "6.34",
+        "7.45",
+        "8.56"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 180,
+    "fields": {
+      "custom_user": 15,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "7.23",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 181,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 1,
+      "falta": 1,
+      "notas": [
+        "7.45",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 182,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 2,
+      "falta": 0,
+      "notas": [
+        "8.12",
+        "7.23",
+        "6.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 183,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 3,
+      "falta": 3,
+      "notas": [
+        "8.56",
+        "7.45",
+        "8.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 184,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 4,
+      "falta": 2,
+      "notas": [
+        "6.23",
+        "7.34",
+        "8.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 185,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 5,
+      "falta": 1,
+      "notas": [
+        "8.12",
+        "7.23",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 186,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 6,
+      "falta": 0,
+      "notas": [
+        "7.45",
+        "8.56",
+        "6.23"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 187,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 7,
+      "falta": 3,
+      "notas": [
+        "8.34",
+        "7.23",
+        "9.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 188,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 8,
+      "falta": 2,
+      "notas": [
+        "8.12",
+        "6.34",
+        "7.45"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 189,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 9,
+      "falta": 1,
+      "notas": [
+        "7.23",
+        "8.12",
+        "9.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 190,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 10,
+      "falta": 0,
+      "notas": [
+        "6.23",
+        "8.12",
+        "7.34"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 191,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 11,
+      "falta": 3,
+      "notas": [
+        "8.34",
+        "9.23",
+        "7.12"
+      ]
+    }
+  },
+  {
+    "model": "api.customuserdisciplina",
+    "pk": 192,
+    "fields": {
+      "custom_user": 16,
+      "disciplina": 12,
+      "falta": 2,
+      "notas": [
+        "7.45",
+        "8.12",
+        "9.34"
+      ]
+    }
+  }
+]
