@@ -2,6 +2,7 @@ import uuid
 from typing import Iterable
 
 from django.db import models
+from django.contrib.postgres.fields import ArrayField as postgres_ArrayField
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -81,7 +82,8 @@ class CustomUserDisciplina(models.Model):
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     falta = models.IntegerField()
-    nota = models.DecimalField(decimal_places=2, max_digits=5)
+    # notas = models.DecimalField(decimal_places=2, max_digits=5)
+    notas = postgres_ArrayField(base_field=models.DecimalField(decimal_places=2, max_digits=5), size=3, null=True, blank=True)
 
 
 class Pendencias(models.Model):

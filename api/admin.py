@@ -68,4 +68,4 @@ class CustomTurmaAdmin(admin.ModelAdmin):
 
 @admin.register(models.CustomUserDisciplina)
 class CustomUserDisciplinaModel(admin.ModelAdmin):
-    list_display = ('custom_user', 'disciplina', 'falta', 'nota')
+    list_display = ('custom_user', 'disciplina', 'falta', 'notas')
