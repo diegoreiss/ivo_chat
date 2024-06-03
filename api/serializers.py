@@ -4,6 +4,12 @@ from drf_yasg import openapi
 from . import models
 
 
+class TurmaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Turma
+        fields = '__all__'
+
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser
@@ -14,6 +20,14 @@ class CustomUserMinimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser
         fields = ['uuid', 'pk', 'first_name', 'last_name']
+
+
+class CustomUserTurmaSerializer(serializers.ModelSerializer):
+    turma = TurmaSerializer()
+
+    class Meta:
+        model = models.CustomUser
+        fields = ['turma']
 
 
 class CustomUserCreateSerializer(serializers.ModelSerializer):

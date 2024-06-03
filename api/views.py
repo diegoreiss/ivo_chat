@@ -42,6 +42,14 @@ class CustomUserListCreate(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
 
 
+class CustomUserTurmaRetrieve(generics.RetrieveAPIView):
+    queryset = models.CustomUser.objects.all()
+    serializer_class = serializers.CustomUserTurmaSerializer
+    lookup_field = 'uuid'
+    authentication_classes = ()
+    permission_classes = (HasAPIKey, )
+
+
 class CustomUserCurrentRetrieve(generics.RetrieveAPIView):
     serializer_class = serializers.CustomUserRetrieveSerializer
     permission_classes = (IsAuthenticated, )
@@ -432,6 +440,7 @@ class StoriesStepsUpdate(views.APIView):
 
 class MessageToBotSender(views.APIView):
     authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @swagger_auto_schema(request_body=serializers.RestInputSendMessageSerializer)
     def post(self, request):
@@ -457,15 +466,6 @@ class MessageToBotSender(views.APIView):
 class BotMetrics(views.APIView):
     authentication_classes = ()
     permission_classes = (HasAPIKey,)
-
-    # metrics_param = openapi.Parameter(
-    #     'metric',
-    #     openapi.IN_QUERY,
-    #     description='Escolha a métrica para visualizar',
-    #     type=openapi.TYPE_STRING,
-    #     enum=['bot_actions', 'test'],
-    #     required=True
-    # )
 
     @swagger_auto_schema(operation_summary='Retorna as métricas do bot')
     def get(self, request):

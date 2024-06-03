@@ -1,4 +1,5 @@
 import json
+import urllib.parse
 
 from django.core.cache import caches
 from asgiref.sync import sync_to_async
@@ -10,6 +11,7 @@ from api.models import CustomUser
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         default_cache = caches['default']
+
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = f'chat_u_{self.room_name}'
         logged_users = default_cache.get('user_activity:logged_users')
@@ -47,11 +49,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
     
     async def disconnect(self, code):
+        query = urllib.parse.parse_qs(self.scope['query_string'])
+        uuid = query.get(b'uuid')[0].decode('utf-8')
+
         default_cache = caches['default']
         new_list = []
         logged_users_cache_list = default_cache.get('user_activity:logged_users')
 
-        if logged_users_cache_list:
+        if logged_users_cache_list and uuid == self.room_name:
             print(logged_users_cache_list)
             new_list = list(filter(lambda user: user['uuid'] != self.room_name, logged_users_cache_list[:]))
             print(f'new list >>>: {new_list}')

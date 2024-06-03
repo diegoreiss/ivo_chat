@@ -20,6 +20,7 @@ user_urls = [
     path('user/role/aluno/', view=views.CustomUserByRoleAlunoAPIView.as_view(), name='customuser_by_role_admin_view'),
     path('user/current/', view=views.CustomUserCurrentRetrieve.as_view(), name='customuser_current_role_view'),
     path('user/<str:uuid>/role/aluno/update/password', view=views.CustomUserChangePasswordAPIView.as_view(), name='customuser_password_update'),
+    path('user/<str:uuid>/turma/', view=views.CustomUserTurmaRetrieve.as_view(), name='customuser_turma_retrieve')
 ]
 
 bot_urls = [
