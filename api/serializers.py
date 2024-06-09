@@ -50,6 +50,29 @@ class CustomUserChangePasswordSerializer(serializers.ModelSerializer):
         fields = ['password', 'confirm_password']
 
 
+class PendenciasSerializer(serializers.ModelSerializer):
+    custom_user = serializers.UUIDField(source='custom_user.uuid', read_only=False)
+    custom_user_first_name = serializers.CharField(source='custom_user.first_name', read_only=True)
+    custom_user_last_name = serializers.CharField(source='custom_user.last_name', read_only=True)
+    custom_user_turma_uuid = serializers.CharField(source='custom_user.turma.uuid', read_only=True)
+    custom_user_turma_nome = serializers.CharField(source='custom_user.turma.nome', read_only=True)
+
+    class Meta:
+        model = models.Pendencia
+        fields = ('uuid', 'descricao', 'status', 
+                  'criado_em', 'atualizado_em', 'custom_user', 
+                  'custom_user_first_name', 'custom_user_last_name','custom_user_turma_nome',
+                  'custom_user_turma_uuid')
+        read_only_fields = ('status', 'custom_user', 'custom_user_first_name', 
+                            'custom_user_last_name', 'custom_user_turma_nome', 'custom_user_turma_uuid')
+
+
+class PendenciasCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Pendencia
+        fields = ('descricao', 'custom_user')
+
+
 class IntentSerializer(serializers.Serializer):
     intent = serializers.CharField(default="")
     examples = serializers.CharField(allow_blank=True, required=False, default="")

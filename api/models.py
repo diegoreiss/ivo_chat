@@ -2,6 +2,7 @@ import uuid
 from typing import Iterable
 
 from django.db import models
+from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField as postgres_ArrayField
 from django.contrib.auth.models import AbstractUser
 
@@ -86,7 +87,7 @@ class CustomUserDisciplina(models.Model):
     notas = postgres_ArrayField(base_field=models.DecimalField(decimal_places=2, max_digits=5), size=3, null=True, blank=True)
 
 
-class Pendencias(models.Model):
+class Pendencia(models.Model):
     STATUS_AGUARDANDO = 1
     STATUS_RESOLVIDO = 2
 
@@ -96,8 +97,17 @@ class Pendencias(models.Model):
     )
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    nome = models.CharField(max_length=255)
     descricao = models.TextField()
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, blank=False, null=False, default=STATUS_AGUARDANDO)
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
+
+    custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
+    @classmethod
+    def get_items_by_current_month(cls):
+        current_date = timezone.now()
+        start_of_month = current_date.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        next_month = start_of_month.replace(month=start_of_month.month + 1)
+
+        return cls.objects.filter(criado_em__gte=start_of_month, criado_em__lt=next_month)

@@ -1,3 +1,6 @@
+import uuid
+import json
+
 from django.core.cache import cache, caches
 from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
@@ -178,6 +181,111 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
                 }, status=status.HTTP_412_PRECONDITION_FAILED)
 
         return response
+
+
+class CustomUserRetrieveTurmaCount(generics.RetrieveAPIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey,)
+
+    @swagger_auto_schema(operation_summary='1')
+    def get(self, request, turma_uuid, *args, **kwargs):
+        count = models.CustomUser.objects.filter(turma__uuid=uuid.UUID(turma_uuid)).count()
+        return Response({'count': count})
+
+
+class CustomUserRetrieveAllCount(generics.RetrieveAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    pagination_class = None
+
+
+    manual_parameters = [
+        'all', 'active', 'inactive'
+    ]
+    @swagger_auto_schema(operation_summary='2', manual_parameters=[
+        openapi.Parameter(
+            'filter_by',
+            openapi.IN_QUERY,
+            description='Filter by',
+            type=openapi.TYPE_STRING,
+            enum=manual_parameters,
+            default=manual_parameters[0]
+        )
+    ])
+    def get(self, request, *args, **kwargs):
+        filter_by = request.GET.get('filter_by', 'all')
+
+        if filter_by == self.manual_parameters[1]:
+            count = models.CustomUser.objects.filter(is_active=True).count()
+        elif filter_by == self.manual_parameters[2]:
+            count = models.CustomUser.objects.filter(is_active=False).count()
+        else:
+            count = models.CustomUser.objects.all().count()
+        
+
+        return Response({'count': count}, status=status.HTTP_200_OK)
+
+class PendenciasListCreate(generics.ListCreateAPIView):
+    queryset = models.Pendencia.objects.all()
+    serializer_class = serializers.PendenciasSerializer
+    authentication_classes = ()
+    permission_classes = (HasAPIKey,)
+
+    @swagger_auto_schema(operation_summary='Retorna todas as pendências')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+    
+    @swagger_auto_schema(operation_summary='Cria uma pendência')
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+    
+    def create(self, request, *args, **kwargs):
+        custom_user_uuid = request.data['custom_user']
+        user = models.CustomUser.objects.get(uuid=custom_user_uuid)
+        request_data = request.data.copy()
+        request_data['custom_user'] = user.pk
+        serializer = serializers.PendenciasCreateSerializer(data=request_data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        headers = self.get_success_headers(serializer.data)
+
+        return Response(status=status.HTTP_201_CREATED, headers=headers)
+
+
+class PendenciasRetrieveStatusCount(generics.RetrieveAPIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey, )
+
+    @swagger_auto_schema(operation_summary='isso ai')
+    def get(self, request, *args, **kwargs):
+        pendencia_status = kwargs.get('status')
+
+        if not pendencia_status:
+            return Response({'error': 'Required status param'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            status_int = int(pendencia_status)
+        except:
+            return Response({'error': 'Invalid status parameter.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        count = models.Pendencia.objects.filter(status=status_int).count()
+
+        return Response({'count': count}, status=status.HTTP_200_OK)
+
+
+class PendenciasRetrieveByCurrentMonth(generics.ListAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = serializers.PendenciasSerializer
+    queryset = models.Pendencia.get_items_by_current_month()
+    pagination_class = None
+
+    @swagger_auto_schema(operation_summary='Retorna as pendencias do mês atual')
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class IntentListCreate(views.APIView):
     authentication_classes = (JWTAuthentication, )

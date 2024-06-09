@@ -16,11 +16,19 @@ token_urls = [
 
 user_urls = [
     path('user/', view=views.CustomUserListCreate.as_view(), name='customuser_view_create'),
+    path('user/count/', view=views.CustomUserRetrieveAllCount.as_view(), name='customuser_view_create_all_count'),
     path('user/minimal/', view=views.CustomUserMinimalRetrieve.as_view(), name='customuser_minimal_view'),
     path('user/role/aluno/', view=views.CustomUserByRoleAlunoAPIView.as_view(), name='customuser_by_role_admin_view'),
     path('user/current/', view=views.CustomUserCurrentRetrieve.as_view(), name='customuser_current_role_view'),
     path('user/<str:uuid>/role/aluno/update/password', view=views.CustomUserChangePasswordAPIView.as_view(), name='customuser_password_update'),
-    path('user/<str:uuid>/turma/', view=views.CustomUserTurmaRetrieve.as_view(), name='customuser_turma_retrieve')
+    path('user/turma/<str:turma_uuid>/count/', view=views.CustomUserRetrieveTurmaCount.as_view(), name='customuser_retrieve_by_turma_count'),
+    path('user/<str:uuid>/turma/', view=views.CustomUserTurmaRetrieve.as_view(), name='customuser_turma_retrieve'),
+]
+
+pendencia_urls = [
+    path('pendencia/', view=views.PendenciasListCreate.as_view(), name='pendencias_list'),
+    path('pendencia/month/', view=views.PendenciasRetrieveByCurrentMonth.as_view(), name='pendencias_list_by_current_month'),
+    path('pendencia/<int:status>/count/', view=views.PendenciasRetrieveStatusCount.as_view(), name='pendencias_retrieve_by_status'),
 ]
 
 bot_urls = [
@@ -45,6 +53,7 @@ urlpatterns = [
     *health_check_urls,
     *token_urls,
     *user_urls,
+    *pendencia_urls,
     *bot_urls,
     *metrics_urls
 ]

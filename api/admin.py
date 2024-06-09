@@ -66,6 +66,12 @@ class CustomDisciplinaAdmin(admin.ModelAdmin):
 class CustomTurmaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'turno', 'calendario', 'uuid', 'pk')
 
+
 @admin.register(models.CustomUserDisciplina)
 class CustomUserDisciplinaModel(admin.ModelAdmin):
     list_display = ('custom_user', 'disciplina', 'falta', 'notas')
+
+
+@admin.register(models.Pendencia)
+class PendenciasModel(admin.ModelAdmin):
+    list_display = ('uuid', 'custom_user', 'descricao', 'status', 'criado_em', 'atualizado_em')
