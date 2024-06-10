@@ -188,7 +188,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework_api_key.permissions.HasAPIKey',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.PageNumberPaginationWithTotalPages',
     'PAGE_SIZE': 10,
 }
 

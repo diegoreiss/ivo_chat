@@ -323,3 +323,7 @@ class StoryCreateSerializer(serializers.Serializer):
 class RestInputSendMessageSerializer(serializers.Serializer):
     sender = serializers.CharField()
     message = serializers.CharField()
+
+
+class FileSerializer(serializers.Serializer):
+    file = serializers.FileField()

@@ -16,6 +16,7 @@ token_urls = [
 
 user_urls = [
     path('user/', view=views.CustomUserListCreate.as_view(), name='customuser_view_create'),
+    path('user/metrics/', view=views.CustomUserMetrics.as_view(), name='customuser_metrics'),
     path('user/count/', view=views.CustomUserRetrieveAllCount.as_view(), name='customuser_view_create_all_count'),
     path('user/minimal/', view=views.CustomUserMinimalRetrieve.as_view(), name='customuser_minimal_view'),
     path('user/role/aluno/', view=views.CustomUserByRoleAlunoAPIView.as_view(), name='customuser_by_role_admin_view'),
@@ -27,8 +28,8 @@ user_urls = [
 
 pendencia_urls = [
     path('pendencia/', view=views.PendenciasListCreate.as_view(), name='pendencias_list'),
-    path('pendencia/month/', view=views.PendenciasRetrieveByCurrentMonth.as_view(), name='pendencias_list_by_current_month'),
-    path('pendencia/<int:status>/count/', view=views.PendenciasRetrieveStatusCount.as_view(), name='pendencias_retrieve_by_status'),
+    path('pendencia/metrics/', view=views.PendenciaMetrics.as_view(), name='pendencias_count_each_turma'),
+    path('pendencia/<str:aluno_uuid>/', view=views.PendenciasListByCustomUser.as_view(), name='pendencias_list_by_customuser'),
 ]
 
 bot_urls = [
@@ -49,13 +50,19 @@ metrics_urls = [
     path('metrics/bot/', view=views.BotMetrics.as_view(), name='metrics')
 ]
 
+document_urls = [
+    path('document/aluno/<str:aluno_uuid>/', view=views.CustomUserDocumentDownload.as_view(), name='customuser_document_generator'),
+    path('document/bot/', view=views.BotDocumentDownload.as_view(), name='bot_document_generator')
+]
+
 urlpatterns = [
     *health_check_urls,
     *token_urls,
     *user_urls,
     *pendencia_urls,
     *bot_urls,
-    *metrics_urls
+    *metrics_urls,
+    *document_urls
 ]
 
 

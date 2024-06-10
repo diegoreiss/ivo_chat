@@ -1,7 +1,13 @@
+import os
 import uuid
-import json
+import mimetypes
+import statistics
+from urllib.parse import urljoin
 
 from django.core.cache import cache, caches
+from django.core.files.storage import default_storage
+from django.http import HttpResponse
+from django.db.models import Count, Case, When, BooleanField
 from rest_framework import generics, status, views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -13,7 +19,7 @@ from drf_yasg.utils import swagger_auto_schema
 from . import serializers
 from . import permissions
 from . import models
-from utils import email_utils
+from utils import email_utils, pdf_utils
 from services.bot_connector import (
     IntentManipulation, ResponseManipulation, StoriesManipulation,
     RestInput, BotMetricsInput
@@ -225,6 +231,37 @@ class CustomUserRetrieveAllCount(generics.RetrieveAPIView):
 
         return Response({'count': count}, status=status.HTTP_200_OK)
 
+
+class CustomUserMetrics(views.APIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    manual_parameters = [
+        'count_is_active_for_each_custom_user', 'total_users'
+    ]
+
+    @swagger_auto_schema(operation_summary='Métricas disponíveis para CustomUser', manual_parameters=[
+        openapi.Parameter(
+            'metrics',
+            openapi.IN_QUERY,
+            description='Available metrics',
+            type=openapi.TYPE_STRING,
+            enum=manual_parameters,
+            default=manual_parameters[0]
+        )
+    ])
+    def get(self, request, *args, **kwargs):
+        metrics = request.GET.get('metrics', self.manual_parameters[0])
+
+        if metrics == self.manual_parameters[0]:
+            alunos = models.CustomUser.objects.filter(role=2).aggregate(
+                total_alunos=Count('id'),
+                com_acesso=Count(Case(When(is_active=True, then=1), output_field=BooleanField())),
+                sem_acesso=Count(Case(When(is_active=False, then=1), output_field=BooleanField()))
+            )
+            return Response(alunos, status=status.HTTP_200_OK)
+
+
 class PendenciasListCreate(generics.ListCreateAPIView):
     queryset = models.Pendencia.objects.all()
     serializer_class = serializers.PendenciasSerializer
@@ -254,37 +291,49 @@ class PendenciasListCreate(generics.ListCreateAPIView):
         return Response(status=status.HTTP_201_CREATED, headers=headers)
 
 
-class PendenciasRetrieveStatusCount(generics.RetrieveAPIView):
-    authentication_classes = ()
-    permission_classes = (HasAPIKey, )
-
-    @swagger_auto_schema(operation_summary='isso ai')
-    def get(self, request, *args, **kwargs):
-        pendencia_status = kwargs.get('status')
-
-        if not pendencia_status:
-            return Response({'error': 'Required status param'}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            status_int = int(pendencia_status)
-        except:
-            return Response({'error': 'Invalid status parameter.'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        count = models.Pendencia.objects.filter(status=status_int).count()
-
-        return Response({'count': count}, status=status.HTTP_200_OK)
-
-
-class PendenciasRetrieveByCurrentMonth(generics.ListAPIView):
+class PendenciaMetrics(views.APIView):
     authentication_classes = ()
     permission_classes = ()
-    serializer_class = serializers.PendenciasSerializer
-    queryset = models.Pendencia.get_items_by_current_month()
-    pagination_class = None
 
-    @swagger_auto_schema(operation_summary='Retorna as pendencias do mês atual')
+    manual_parameters = [
+        'count_pendencia_for_each_turma', 'count_pendencia_status'
+    ]
+
+    @swagger_auto_schema(operation_summary='Métricas disponíveis', manual_parameters=[
+        openapi.Parameter(
+            'metrics',
+            openapi.IN_QUERY,
+            description='Metrics for pendência',
+            type=openapi.TYPE_STRING,
+            enum=manual_parameters,
+            default=manual_parameters[0]
+        )
+    ])
     def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+        metrics = request.GET.get('metrics', self.manual_parameters[0])
+
+        if metrics == self.manual_parameters[0]:
+            turmas = models.Turma.objects.annotate(num_pendencias=Count('customuser__pendencia'))
+
+            return Response({'turmas': {f'{turma.nome} - {turma.TURNO_CHOICES[turma.turno - 1][1]}': turma.num_pendencias for turma in turmas}}, status=status.HTTP_200_OK)
+        elif metrics == self.manual_parameters[1]:
+            pendencias_status = models.Pendencia.objects.aggregate(
+                pendencias_aguardando_resposta=Count(Case(When(status=1, then=1), output_field=BooleanField())),
+                pendencias_resolvidas=Count(Case(When(status=2, then=1), output_field=BooleanField())),
+            )
+
+            return Response(pendencias_status, status=status.HTTP_200_OK)
+
+
+class PendenciasListByCustomUser(generics.ListAPIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey, )
+    serializer_class = serializers.PendenciasSerializer
+
+    def get_queryset(self):
+        aluno_uuid = self.kwargs['aluno_uuid']
+
+        return models.Pendencia.objects.filter(custom_user__uuid=aluno_uuid)
 
 
 class IntentListCreate(views.APIView):
@@ -591,4 +640,98 @@ class AppMetrics(views.APIView):
     def get(self, request):
         print(request.GET)
 
+        return Response({}, status=200)
+
+
+class CustomUserDocumentDownload(views.APIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    manual_parameters = [
+        'cronograma', 'atestado_de_matricula', 'atestado_de_frequencia',
+        'historico_escolar'
+    ]
+
+    @swagger_auto_schema(operation_summary='Faz download de um documento relacionado a um aluno', manual_parameters=[
+        openapi.Parameter(
+            'file',
+            openapi.IN_QUERY,
+            description='Selected File',
+            type=openapi.TYPE_STRING,
+            enum=manual_parameters,
+            default=manual_parameters[0]
+        )
+    ])
+    def get(self, request, aluno_uuid):
+        user = models.CustomUser.objects.get(uuid=aluno_uuid)
+
+        if user.role != user.ALUNO:
+            return Response({'error': 'Usuário inválido para essa requisição'}, status=status.HTTP_400_BAD_REQUEST)
+
+        file = request.GET.get('file', self.manual_parameters[0])
+        dados_para_pdf = {
+            'coordenador': {
+                'nome': 'Bruno Figueiredo Coelho',
+                'contato': '40028922'
+            },
+            'instituicao': {
+                'nome': 'ivo silveira',
+                'endereco': 'rua dos anjos 12'
+            },
+            'aluno': {
+                'nome': f'{user.first_name} {user.last_name}',
+                'matricula': user.username,
+                'turma': user.turma.nome,
+                'turno': models.Turma.TURNO_CHOICES[user.turma.turno - 1][1]
+            }
+        }
+
+        if file == self.manual_parameters[0]:
+            response = Response({'url': request.build_absolute_uri(user.turma.calendario.url), 'title': user.turma.calendario.name, 'content-type': mimetypes.guess_type(user.turma.calendario.name)[0]})
+        elif file == self.manual_parameters[1]:
+            buffer = pdf_utils.gerar_atestado_de_matricula(dados_para_pdf)
+            filename = f'atestado_de_matricula_{str(user.first_name + user.last_name).replace(' ', '_')}.pdf'
+            file_name = default_storage.save(filename, buffer)
+            response = Response({'url': request.build_absolute_uri(default_storage.url(file_name)), 'title': file_name, 'content-type': mimetypes.guess_type(file_name)[0]}, status=status.HTTP_200_OK)
+        elif file == self.manual_parameters[2]:
+            buffer = pdf_utils.gerar_atestado_de_frequencia(dados_para_pdf)
+            filename = f'atestado_de_frequencia_{str(user.first_name + user.last_name).replace(' ', '_')}.pdf'
+            file_name = default_storage.save(filename, buffer)
+            response = Response({'url': request.build_absolute_uri(default_storage.url(file_name)), 'title': file_name, 'content-type': mimetypes.guess_type(file_name)[0]}, status=status.HTTP_200_OK)
+        elif file == self.manual_parameters[3]:
+            disciplinas = models.CustomUserDisciplina.objects.filter(custom_user__uuid=aluno_uuid)
+            
+            data = [
+                ['Disciplina', 'Nota', 'Faltas'],
+            ]
+            data.extend([[i.disciplina.nome, f'{statistics.mean(i.notas):.2f}', f'{i.falta}'] for i in disciplinas])
+            dados_para_pdf['historico'] = data
+
+            buffer = pdf_utils.gerar_historico_escolar(dados_para_pdf)
+            filename = f'historico_escolar_{str(user.first_name + user.last_name).replace(' ', '_')}.pdf'
+            file_name = default_storage.save(filename, buffer)
+            response = Response({'url': request.build_absolute_uri(default_storage.url(file_name)), 'title': file_name, 'content-type': mimetypes.guess_type(file_name)[0]}, status=status.HTTP_200_OK)
+
+        return response
+
+
+class BotDocumentDownload(views.APIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey, )
+
+    manual_parameters = [
+        'relatorio_acoes'
+    ]
+
+    @swagger_auto_schema(operation_summary='Faz o download de um documento relacionado ao bot', manual_parameters=[
+        openapi.Parameter(
+            'file',
+            openapi.IN_QUERY,
+            description='Selected File',
+            type=openapi.TYPE_STRING,
+            enum=manual_parameters,
+            default=manual_parameters[0]
+        )
+    ])
+    def get(self, request):
         return Response({}, status=200)
