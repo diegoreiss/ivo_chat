@@ -189,7 +189,7 @@ class CustomUserChangePasswordAPIView(generics.UpdateAPIView):
         return response
 
 
-class CustomUserRetrieveTurmaCount(generics.RetrieveAPIView):
+class CustomUserRetrieveTurmaCount(views.APIView):
     authentication_classes = ()
     permission_classes = (HasAPIKey,)
 
@@ -199,7 +199,7 @@ class CustomUserRetrieveTurmaCount(generics.RetrieveAPIView):
         return Response({'count': count})
 
 
-class CustomUserRetrieveAllCount(generics.RetrieveAPIView):
+class CustomUserRetrieveAllCount(views.APIView):
     authentication_classes = ()
     permission_classes = ()
     pagination_class = None
