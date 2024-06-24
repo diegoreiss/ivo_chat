@@ -336,6 +336,17 @@ class PendenciasListByCustomUser(generics.ListAPIView):
         return models.Pendencia.objects.filter(custom_user__uuid=aluno_uuid)
 
 
+class PendenciasUpdateStatus(generics.UpdateAPIView):
+    authentication_classes = ()
+    permission_classes = (HasAPIKey, )
+    serializer_class = serializers.PendenciaUpdateStatusSerializer
+    queryset = models.Pendencia.objects.all()
+    lookup_field = 'uuid'
+
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+
 class IntentListCreate(views.APIView):
     authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAuthenticated, permissions.IsAdmin)

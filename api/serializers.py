@@ -73,6 +73,12 @@ class PendenciasCreateSerializer(serializers.ModelSerializer):
         fields = ('descricao', 'custom_user')
 
 
+class PendenciaUpdateStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Pendencia
+        fields = ('status', )
+
+
 class IntentSerializer(serializers.Serializer):
     intent = serializers.CharField(default="")
     examples = serializers.CharField(allow_blank=True, required=False, default="")

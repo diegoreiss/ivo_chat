@@ -28,6 +28,7 @@ user_urls = [
 
 pendencia_urls = [
     path('pendencia/', view=views.PendenciasListCreate.as_view(), name='pendencias_list'),
+    path('pendencia/<str:uuid>/status/', view=views.PendenciasUpdateStatus.as_view(), name='pendencias_update_status'),
     path('pendencia/metrics/', view=views.PendenciaMetrics.as_view(), name='pendencias_count_each_turma'),
     path('pendencia/<str:aluno_uuid>/', view=views.PendenciasListByCustomUser.as_view(), name='pendencias_list_by_customuser'),
 ]
